@@ -1,0 +1,36 @@
+class Recetario:
+    def __init__(self):
+        self.recetas = {}
+
+    def agregar_receta(self, nombre, ingredientes):
+        if nombre in self.recetas:
+            print("La receta ya existe.")
+        else:
+            self.recetas[nombre] = ingredientes
+            print("Receta agregada.")
+
+    def buscar_receta(self, nombre):
+        if nombre in self.recetas:
+            print(f"Receta: {nombre}, Ingredientes: {self.recetas[nombre]}")
+        else:
+            print("Receta no encontrada.")
+
+def main():
+    recetario = Recetario()
+    
+    while True:
+        accion = input("¿Deseas 'agregar' o 'buscar' una receta? (o 'salir' para terminar): ").lower()
+        if accion == 'salir':
+            break
+        elif accion in ['agregar', 'buscar']:
+            nombre = input("Ingresa el nombre de la receta: ")
+            if accion == 'agregar':
+                ingredientes = input("Ingresa los ingredientes (separados por comas): ").split(",")
+                recetario.agregar_receta(nombre, [ingrediente.strip() for ingrediente in ingredientes])
+            elif accion == 'buscar':
+                recetario.buscar_receta(nombre)
+        else:
+            print("Opción no válida.")
+
+if __name__ == "__main__":
+    main()
